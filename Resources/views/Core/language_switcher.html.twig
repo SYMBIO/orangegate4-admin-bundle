@@ -1,0 +1,16 @@
+<li class="dropdown">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+        {{ current_locale }} <i class="fa fa-caret-down"></i>
+    </a>
+    <div class="dropdown-menu multi-column dropdown-add">
+        <div class="container-fluid">
+            <div class="row">
+                <ul class="dropdown-menu">
+                {% for locale in locales %}
+                    <li><a href="{{ locale.link }}" title="{{ locale.locale_target_language }}">{{ locale.locale_target_language }}</a></li>
+                {% endfor %}
+                   </ul>
+            </div>
+        </div>
+    </div>
+</li>

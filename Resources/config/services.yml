@@ -1,0 +1,36 @@
+services:
+    orangegate.core.date.moment_format_converter:
+        class: Symbio\OrangeGate\AdminBundle\Date\MomentFormatConverter
+
+    orangegate.core.form.type.date_picker:
+        class: Symbio\OrangeGate\AdminBundle\Form\Type\DatePickerType
+        tags:
+            - { name: form.type, alias: orangegate_type_date_picker }
+        arguments: ['@orangegate.core.date.moment_format_converter']
+
+    orangegate.core.form.type.datetime_picker:
+        class: Symbio\OrangeGate\AdminBundle\Form\Type\DateTimePickerType
+        tags:
+            - { name: form.type, alias: orangegate_type_datetime_picker }
+        arguments: ['@orangegate.core.date.moment_format_converter']
+
+    orangegate.admin.form.type.string:
+        class: Symbio\OrangeGate\AdminBundle\Form\Type\StringType
+        tags:
+            - { name: form.type, alias: string }
+
+    orangegate.admin.form.type.autocomplete:
+        class: Symbio\OrangeGate\AdminBundle\Form\Type\AutocompleteType
+        tags:
+            - { name: form.type, alias: orangegate_type_autocomplete }
+
+    twig.extension.text:
+        class: Twig_Extensions_Extension_Text
+        tags:
+            - { name: twig.extension }
+
+    orangegate.admin.block.formatter:
+        class: Symbio\OrangeGate\AdminBundle\Block\FormatterBlockService
+        tags:
+            - { name: sonata.block }
+        arguments: [ sonata.block.empty, @templating ]

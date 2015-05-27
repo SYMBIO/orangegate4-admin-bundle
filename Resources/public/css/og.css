@@ -1,0 +1,150 @@
+.sonata-bc .navbar-search {
+	margin-right: 30px;
+}
+
+.sonata-bc h2 {
+	margin: 0 0 10px 0;
+}
+
+.content-wrapper > .content-header {
+	padding-bottom: 10px;
+}
+
+.content-wrapper > .content-actions {
+	margin-left: 15px;
+}
+
+.content-wrapper > .content-actions > .action-bar {
+    padding-bottom: 10px;
+}
+
+.box-content {
+	padding-bottom: 10px;
+}
+
+.well.form-actions {
+	line-height: 36px;
+}
+
+.content > .alert {
+	margin-left: 0;
+}
+
+td.sonata-ba-list-label {
+	text-align: left;
+}
+
+.content-actions > .nav-tabs-custom {
+	margin-bottom: 0;
+}
+
+.modal .row {
+	margin-left: 0;
+	margin-right: 0;
+}
+
+.field-actions {
+	line-height: 36px;
+}
+
+.field-short-description {
+	border: none;
+	/*line-height: 18px;*/
+	padding: 0;
+	min-width: 0;
+}
+
+.nav-tabs-custom > .nav-tabs > li {
+	margin-right: 0;
+}
+
+@media (max-width: 767px) {
+	.navbar-nav>li {
+		float: left;
+	}
+	.navbar-nav>li>a>span {
+		display: none;
+	}
+}
+
+
+.image-item .image-box {
+	float: none;
+	margin: 0 0 5px 0;
+}
+
+.image-box {
+	border: 1px solid #dadada;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	padding: 5px;
+	margin-bottom: 30px;
+	float: left;
+	margin-right: 10px;
+	position: relative;
+}
+
+.image-box-close {
+	position: absolute;
+	right: 10px;
+	top: 10px;
+}
+
+.image-item {
+	display:block;
+	float: left;
+	margin-right: 10px;
+}
+
+
+.clearfix:after {
+	clear: both;
+	content: '.';
+	display: block;
+	height: 0;
+	line-height: 0;
+	visibility: hidden;
+}
+
+.sonata-ba-field .field_actions {
+	display: block;
+	margin-top: 10px;
+}
+
+.image-gallery img {
+	max-width: none !important;
+}
+
+.image-gallery .field-short-description {
+	margin: 0;
+	float: none;
+}
+
+.field-container {
+	position: relative;
+}
+
+.field-container .dropzone {
+	display: none;
+}
+
+.field-container.dragover .dropzone {
+	display: block;
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	background: #ccc;
+	opacity: 0.9;
+	z-index: 10;
+	text-align: center;
+	font-size: 2em;
+	padding: 2em 1em;
+}
+
+.field-container .loading {
+	display: none;
+	margin-left: 10px;
+}

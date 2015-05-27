@@ -1,0 +1,5 @@
+{% if admin.isAclEnabled() and admin.hasRoute('acl') and admin.id(object) and admin.isGranted('MASTER', object)%}
+    <a class="btn btn-default sonata-action-element" href="{{ admin.generateObjectUrl('acl', object) }}">
+        <i class="fa fa-users"></i>
+        {{ 'link_action_acl'|trans({}, 'SonataAdminBundle') }}</a>
+{% endif %}

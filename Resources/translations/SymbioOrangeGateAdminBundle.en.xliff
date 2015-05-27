@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+    <file source-language="en" target-language="en" datatype="plaintext"  original="file.ext">
+        <body>
+            <trans-unit id="dashboard">
+                <source>dashboard</source>
+                <target>Dashboard</target>
+            </trans-unit>
+            <trans-unit id="sonata_content">
+                <source>sonata_content</source>
+                <target>Content</target>
+            </trans-unit>
+            <trans-unit id="sonata_site">
+                <source>sonata_site</source>
+                <target>Site Builder</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

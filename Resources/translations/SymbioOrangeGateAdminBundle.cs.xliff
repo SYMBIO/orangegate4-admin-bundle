@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+    <file source-language="en" target-language="en" datatype="plaintext"  original="file.ext">
+        <body>
+            <trans-unit id="dashboard">
+                <source>dashboard</source>
+                <target>Dashboard</target>
+            </trans-unit>
+            <trans-unit id="sonata_content">
+                <source>sonata_content</source>
+                <target>Obsah</target>
+            </trans-unit>
+            <trans-unit id="sonata_site">
+                <source>sonata_site</source>
+                <target>Správa stránek</target>
+            </trans-unit>
+            <trans-unit id="new">
+                <source>new</source>
+                <target>Nový</target>
+            </trans-unit>
+            <trans-unit id="sonata_administration">
+                <source>sonata_administration</source>
+                <target>Administrace</target>
+            </trans-unit>
+            <trans-unit id="label_back_revision">
+                <source>label_back_revision</source>
+                <target>Návrat k revizi</target>
+            </trans-unit>
+            <trans-unit id="label_compare_revision">
+                <source>label_compare_revision</source>
+                <target>Porovnat revize</target>
+            </trans-unit>
+            <trans-unit id="td_compare">
+                <source>td_compare</source>
+                <target>Porovnání</target>
+            </trans-unit>
+            <trans-unit id="flash_revision_back">
+                <source>flash_revision_back</source>
+                <target>Návrat k revizi byl úspěšně dokončen.</target>
+            </trans-unit>
+            <trans-unit id="breadcrumb.link_dashboard">
+                <source>breadcrumb.link_dashboard</source>
+                <target>Dashboard</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
