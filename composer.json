@@ -13,7 +13,7 @@
         }
     ],
     "require": {
-        "sonata-project/admin-bundle": "dev-master"
+        "sonata-project/admin-bundle": "~2.4@dev"
     },
     "require-dev": {
     },
