@@ -12,7 +12,6 @@
             "homepage": "http://www.symbiodigital.com"
         }
     ],
-    "minimum-stability": "dev",
     "require": {
         "sonata-project/admin-bundle": "~2.4@dev"
     },
