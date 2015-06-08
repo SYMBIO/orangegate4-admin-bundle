@@ -11,7 +11,7 @@
 }
 
 .content-wrapper > .content-actions {
-	margin-left: 15px;
+    margin: 0 15px;
 }
 
 .content-wrapper > .content-actions > .action-bar {

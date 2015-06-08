@@ -9,6 +9,18 @@ use Sonata\AdminBundle\Route\RouteCollection;
 
 class Admin extends BaseAdmin
 {
+    protected $listModes = array(
+        'list' => array(
+            'class' => 'fa fa-list fa-fw',
+        ),
+//        'mosaic' => array(
+//            'class' => 'fa fa-th-large fa-fw',
+//        ),
+//        'tree' => array(
+//            'class' => 'fa fa-sitemap fa-fw',
+//        ),
+    );
+
     /**
      * Generates the breadcrumbs array
      *
