@@ -5,16 +5,25 @@ namespace Symbio\OrangeGate\AdminBundle\Block;
 use Sonata\BlockBundle\Block\BlockContextInterface;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\HttpFoundation\Response;
-
+use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\AdminBundle\Validator\ErrorElement;
-
 use Sonata\BlockBundle\Model\BlockInterface;
 use Sonata\BlockBundle\Block\BaseBlockService;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\Translation\TranslatorInterface;
 
 class FormatterBlockService extends \Sonata\FormatterBundle\Block\FormatterBlockService
 {
+
+    /**
+     * @param string          $name
+     * @param EngineInterface $templating
+     */
+    public function __construct($name, EngineInterface $templating, TranslatorInterface $translator)
+    {
+        $this->translator = $translator;
+        parent::__construct($name, $templating);
+    }
 
     public function execute(BlockContextInterface $blockContext, Response $response = null)
     {
@@ -45,6 +54,9 @@ class FormatterBlockService extends \Sonata\FormatterBundle\Block\FormatterBlock
                             return array(
                                 'event_dispatcher' => $formBuilder->getEventDispatcher(),
                                 'format_field'     => array('format', '[format]'),
+                                'format_field_options'      => array(
+                                    'choices'               => array('richhtml' => $this->translator->trans('richhtml', array(), 'SonataFormatterBundle'))
+                                ),
                                 'source_field'     => array('rawContent', '[rawContent]'),
                                 'target_field'     => '[content]',
                                 'ckeditor_context' => 'formatter',

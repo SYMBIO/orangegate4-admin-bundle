@@ -33,4 +33,4 @@ services:
         class: Symbio\OrangeGate\AdminBundle\Block\FormatterBlockService
         tags:
             - { name: sonata.block }
-        arguments: [ sonata.block.empty, @templating ]
+        arguments: [ sonata.block.empty, @templating, @translator ]
