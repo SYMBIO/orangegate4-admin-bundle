@@ -148,3 +148,68 @@ td.sonata-ba-list-label {
 	display: none;
 	margin-left: 10px;
 }
+
+.page-composer__container__view {
+    background: transparent;
+    border: none;
+}
+
+.page-composer__container__view__header {
+    background-color: #3c8dbc !important;
+    color: #fff !important;
+}
+
+.page-composer__container__child {
+    margin-top: 10px;
+}
+
+.page-composer__container__child__content .box-solid .box-header {
+    display: none;
+}
+
+.page-composer__container__child--expanded .page-composer__container__child__edit {
+    box-shadow: none;
+}
+
+.page-composer__container__child--expanded .page-composer__container__child__toggle {
+    top: 20px;
+}
+
+.page-composer__container__child__edit {
+    color: #fff !important;
+    background-color: #3c8dbc;
+    border-left: none;
+    padding: 13px 35px;
+}
+
+.page-composer__container__child__edit:hover {
+    color: #fff !important;
+    background-color: #3c8dbc;
+    border-left: none;
+}
+
+.page-composer__container__child__edit small {
+    display: none;
+}
+
+.page-composer__container__child__name__input {
+    font-size: 1.5em;
+    width: 100%;
+    color: #333;
+}
+
+.page-composer__container__child:hover .page-composer__container__child__switch-enabled {
+    display: none;
+}
+
+.page-composer__container__child--expanded .page-composer__container__child__right {
+    display: none;
+}
+
+.page-composer__container__child__content, .page-composer__container__child__helper {
+    border: 3px solid #3c8dbc;
+}
+
+.page-composer__container__child__content .box.box-solid.box-primary {
+    border: none;
+}

@@ -3,6 +3,7 @@
 namespace Symbio\OrangeGate\AdminBundle\Block;
 
 use Sonata\BlockBundle\Block\BlockContextInterface;
+use Symbio\OrangeGate\PageBundle\Entity\Block;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
@@ -38,9 +39,19 @@ class FormatterBlockService extends \Sonata\FormatterBundle\Block\FormatterBlock
     */
     public function buildEditForm(FormMapper $formMapper, BlockInterface $block)
     {
+        if ($block instanceof Block && $block->getPage()) {
+            /**
+             * @var \Doctrine\ORM\PersistentCollection $translations
+             */
+            $translations = $block->getPage()->getTranslations();
+            $locales = $translations->getKeys();
+        } else {
+            $locales = array();
+        }
+
         $formMapper->add('translations', 'orangegate_translations', array(
             'label' => false,
-            'locales' => array('cs', 'en', 'de'),
+            'locales' => $locales,
             'fields' => array(
                 'enabled' => array(
                     'field_type' => 'checkbox',
