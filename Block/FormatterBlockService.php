@@ -15,10 +15,10 @@ use Symfony\Component\Translation\TranslatorInterface;
 
 class FormatterBlockService extends \Sonata\FormatterBundle\Block\FormatterBlockService
 {
-
     /**
-     * @param string          $name
+     * @param string $name
      * @param EngineInterface $templating
+     * @param TranslatorInterface $translator
      */
     public function __construct($name, EngineInterface $templating, TranslatorInterface $translator)
     {

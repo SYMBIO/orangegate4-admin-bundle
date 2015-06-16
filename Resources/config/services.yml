@@ -34,3 +34,9 @@ services:
         tags:
             - { name: sonata.block }
         arguments: [ sonata.block.empty, @templating, @translator ]
+
+    orangegate.twig_extension:
+        class: Symbio\OrangeGate\AdminBundle\Twig\OrangeGate4Extension
+        public: false
+        tags:
+            - { name: twig.extension }
