@@ -201,6 +201,9 @@ td.sonata-ba-list-label {
 .page-composer__container__child:hover .page-composer__container__child__switch-enabled {
     display: none;
 }
+.page-composer__container__child__enabled {
+    display: none;
+}
 
 .page-composer__container__child--expanded .page-composer__container__child__right {
     display: none;
