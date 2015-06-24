@@ -6,6 +6,7 @@ use Sonata\AdminBundle\Admin\Admin as BaseAdmin;
 use Knp\Menu\ItemInterface as MenuItemInterface;
 use Doctrine\Common\Util\ClassUtils;
 use Sonata\AdminBundle\Route\RouteCollection;
+use Symfony\Component\HttpFoundation\Request;
 
 class Admin extends BaseAdmin
 {
