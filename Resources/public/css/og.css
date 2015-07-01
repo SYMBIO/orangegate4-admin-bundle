@@ -83,6 +83,7 @@ td.sonata-ba-list-label {
 	float: left;
 	margin-right: 10px;
 	position: relative;
+    max-width: 160px;
 }
 
 .image-box-close {
@@ -219,4 +220,13 @@ td.sonata-ba-list-label {
 
 .page-composer__container__child__edit .page-composer__container__child__right {
     display: none;
+}
+
+.file_widget {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    text-align: center;
+    line-height: 1.6em;
 }
