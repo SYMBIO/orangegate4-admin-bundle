@@ -6,6 +6,10 @@
                 <source>No image selected</source>
                 <target>Není vybrán žádný obrázek</target>
             </trans-unit>
+            <trans-unit id="No collection selected">
+                <source>No collection selected</source>
+                <target>Není vybrána žádná kolekce</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
