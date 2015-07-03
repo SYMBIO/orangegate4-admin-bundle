@@ -230,3 +230,7 @@ td.sonata-ba-list-label {
     text-align: center;
     line-height: 1.6em;
 }
+
+.file_widget i {
+    color: #93A1A1;
+}
