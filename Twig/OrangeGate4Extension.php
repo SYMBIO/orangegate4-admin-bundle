@@ -4,11 +4,18 @@ namespace Symbio\OrangeGate\AdminBundle\Twig;
 
 class OrangeGate4Extension extends \Twig_Extension
 {
+
+    public function getFunctions()
+    {
+        return array(
+            new \Twig_SimpleFunction('preg_match', array($this, 'pregMatchFunction')),
+        );
+    }
+
     public function getFilters()
     {
         return array(
             new \Twig_SimpleFilter('preg_replace', array($this, 'pregReplaceFilter')),
-            new \Twig_SimpleFilter('preg_match', array($this, 'pregMatchFilter')),
         );
     }
 
@@ -22,7 +29,7 @@ class OrangeGate4Extension extends \Twig_Extension
         }
     }
 
-    public function pregMatchFilter($subject, $pattern, $replacement='', $limit=-1)
+    public function pregMatchFunction($subject, $pattern, $replacement='', $limit=-1)
     {
         if (!isset($subject)) {
             return null;
