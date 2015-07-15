@@ -16,7 +16,13 @@ class OrangeGate4Extension extends \Twig_Extension
     {
         return array(
             new \Twig_SimpleFilter('preg_replace', array($this, 'pregReplaceFilter')),
+            new \Twig_SimpleFilter('html_decode', array($this, 'htmlDecodeFilter')),
         );
+    }
+
+    public function htmlDecodeFilter($string)
+    {
+        return strip_tags(html_entity_decode($string));
     }
 
     public function pregReplaceFilter($subject, $pattern, $replacement='', $limit=-1)
