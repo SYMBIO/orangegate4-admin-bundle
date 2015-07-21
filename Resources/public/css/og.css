@@ -47,6 +47,10 @@ td.sonata-ba-list-label {
 	line-height: 36px;
 }
 
+.image-gallery .sonata-ba-field-standard-natural .field-actions {
+	margin: 0;
+}
+
 .field-short-description {
 	border: none;
 	/*line-height: 18px;*/
@@ -233,4 +237,26 @@ td.sonata-ba-list-label {
 
 .file_widget i {
     color: #93A1A1;
+}
+
+.btn.btn-outline {
+	color: rgb(51, 51, 51);
+}
+.btn.btn-outline.btn-success:hover {
+	background-color: #00a65a;
+}
+.btn.btn-outline.btn-primary:hover {
+	background-color: #367fa9;
+}
+.btn.btn-outline.btn-default:hover {
+	background-color: #e7e7e7;
+}
+.btn.btn-outline.btn-info:hover {
+	background-color: #00c0ef;
+}
+.btn.btn-outline.btn-danger:hover {
+	background-color: #d73925;
+}
+.btn.btn-outline.btn-warning:hover {
+	background-color: #e08e0b;
 }
