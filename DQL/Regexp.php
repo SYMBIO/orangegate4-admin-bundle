@@ -14,15 +14,14 @@ class Regexp extends FunctionNode
     {
         $parser->match(Lexer::T_IDENTIFIER);
         $parser->match(Lexer::T_OPEN_PARENTHESIS);
-        $this->regexpExpression = $parser->StringPrimary();
+        $this->valueExpression = $parser->StringPrimary();
         $parser->match(Lexer::T_COMMA);
-        $this->valueExpression = $parser->StringExpression();
+        $this->regexpExpression = $parser->StringExpression();
         $parser->match(Lexer::T_CLOSE_PARENTHESIS);
     }
 
     public function getSql(\Doctrine\ORM\Query\SqlWalker $sqlWalker)
     {
-        return '(' . $this->valueExpression->dispatch($sqlWalker) . ' REGEXP ' .
-            $sqlWalker->walkStringPrimary($this->regexpExpression) . ')';
+        return '(' . $this->valueExpression->dispatch($sqlWalker) . ' REGEXP ' . $this->regexpExpression->dispatch($sqlWalker) . ')';
     }
 }
