@@ -24,6 +24,12 @@ services:
         tags:
             - { name: form.type, alias: orangegate_type_autocomplete }
 
+    orangegate.admin.form.type.sortable_entity:
+        class: Symbio\OrangeGate\AdminBundle\Form\Type\SortableEntityType
+        tags:
+            - { name: form.type, alias: orangegate_type_sortable_entity }
+        arguments: [ @doctrine, @property_accessor ]
+
     twig.extension.text:
         class: Twig_Extensions_Extension_Text
         tags:

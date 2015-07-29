@@ -47,7 +47,7 @@ td.sonata-ba-list-label {
 	line-height: 36px;
 }
 
-.image-gallery .sonata-ba-field-standard-natural .field-actions {
+.image-gallery .image-item .field-actions {
 	margin: 0;
 }
 
@@ -70,7 +70,6 @@ td.sonata-ba-list-label {
 		display: none;
 	}
 }
-
 
 .image-item .image-box {
 	float: none;

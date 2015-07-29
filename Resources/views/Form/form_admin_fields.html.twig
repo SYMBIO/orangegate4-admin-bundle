@@ -473,3 +473,45 @@
         {{ money_pattern|replace({ '{{ widget }}': block('form_widget_simple') })|raw }}
     {% endif %}
 {%- endblock money_widget %}
+
+{%- block orangegate_type_sortable_entity_widget -%}
+    <input type="hidden" {{ block('widget_attributes') }} value="{{ value|join(",") }}">
+    <script>
+        {%- set options = choices -%}
+        var data = {{ block('orangegate_type_sortable_entity_widget_options') }};
+        $("#{{ id }}").select2({data: data, multiple: true, dropdownAutoWidth: true});
+        $("#{{ id }}").select2('container').find('ul.select2-choices').sortable({
+            containment: 'parent',
+            start: function() { $('#{{ id }}').select2("onSortStart"); },
+            update: function() { $('#{{ id }}').select2("onSortEnd"); }
+        });
+        $("#{{ id }}").parents('form:first').submit(function (event) {
+            var values   = $("#{{ id }}").val().split(',');
+            var baseName = $("#{{ id }}").attr('name');
+            baseName = baseName.substring(0, baseName.length-1);
+            for (var i=0; i<values.length; i++) {
+                jQuery('<input>')
+                        .attr('type', 'hidden')
+                        .attr('name', baseName+i+']')
+                        .val(values[i])
+                        .appendTo($("#{{ id }}").parents('form:first'));
+            }
+            $("#{{ id }}").remove();
+        });
+    </script>
+{%- endblock orangegate_type_sortable_entity_widget -%}
+
+{%- block orangegate_type_sortable_entity_widget_options -%}
+    [
+    {%- for group_label, choice in options -%}
+        {%- if choice is iterable -%}
+            {%- if loop.index > 1 -%},{%- endif -%}[
+                {%- set options = choice -%}
+                {{- block('choice_widget_options') -}}
+            ]
+        {%- else -%}
+            {%- if loop.index > 1 -%},{%- endif -%}{ id: '{{ choice.value }}', text: '{{ choice.label|trans({}, translation_domain) }}' }
+        {%- endif -%}
+    {%- endfor -%}
+    ]
+{%- endblock orangegate_type_sortable_entity_widget_options -%}
