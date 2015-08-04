@@ -61,18 +61,10 @@ class FormatterBlockService extends \Sonata\FormatterBundle\Block\FormatterBlock
 					'field_type' => 'sonata_type_immutable_array',
                     'label' => false,
 					'keys' => array(
-                        array('content', 'sonata_formatter_type', function(FormBuilderInterface $formBuilder) {
-                            return array(
-                                'event_dispatcher' => $formBuilder->getEventDispatcher(),
-                                'format_field'     => array('format', '[format]'),
-                                'format_field_options'      => array(
-                                    'choices'               => array('richhtml' => $this->translator->trans('richhtml', array(), 'SonataFormatterBundle'))
-                                ),
-                                'source_field'     => array('rawContent', '[rawContent]'),
-                                'target_field'     => '[content]',
-                                'ckeditor_context' => 'formatter',
-                            );
-                        }),
+                        array('content', 'ckeditor', array(
+                                'config_name' => 'formatter',
+                            )
+                        ),
                     )
                 )
             )
