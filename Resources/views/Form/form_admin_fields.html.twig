@@ -515,3 +515,23 @@
     {%- endfor -%}
     ]
 {%- endblock orangegate_type_sortable_entity_widget_options -%}
+
+{% block orangegate_simple_formatter_type_widget %}
+
+    <!-- widget: sonata_simple_formatter_type_widget -->
+
+    {{ form_widget(form) }}
+
+    <script>
+        jQuery(document).ready(function() {
+            if (typeof CKEDITOR === 'undefined') {
+                return;
+            }
+            CKEDITOR.plugins.addExternal("youtube", "/bundles/symbioorangegateadmin/plugins/youtube/", "plugin.js");
+            var instance = {{ ckeditor_replace(form.vars.id, ckeditor_configuration) }}
+            instance.on('change', function() {
+                $('#{{ form.vars.id }}').val(this.getSnapshot());
+            });
+        });
+    </script>
+{% endblock orangegate_simple_formatter_type_widget %}

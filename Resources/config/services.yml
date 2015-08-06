@@ -46,3 +46,9 @@ services:
         public: false
         tags:
             - { name: twig.extension }
+
+    orangegate.formatter.form.type.simple:
+        class: Symbio\OrangeGate\AdminBundle\Form\Type\SimpleFormatterType
+        arguments: [@ivory_ck_editor.config_manager]
+        tags:
+            - { name: form.type, alias: orangegate_simple_formatter_type }

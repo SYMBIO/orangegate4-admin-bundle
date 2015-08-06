@@ -61,8 +61,8 @@ class FormatterBlockService extends \Sonata\FormatterBundle\Block\FormatterBlock
 					'field_type' => 'sonata_type_immutable_array',
                     'label' => false,
 					'keys' => array(
-                        array('content', 'ckeditor', array(
-                                'config_name' => 'formatter',
+                        array('content', 'orangegate_simple_formatter_type', array(
+                                'ckeditor_context' => 'formatter',
                             )
                         ),
                     )
