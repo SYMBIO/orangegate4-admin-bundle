@@ -39,7 +39,7 @@ services:
         class: Symbio\OrangeGate\AdminBundle\Block\FormatterBlockService
         tags:
             - { name: sonata.block }
-        arguments: [ sonata.block.empty, @templating, @translator ]
+        arguments: [ sonata.block.empty, @templating, @translator, @twig ]
 
     orangegate.twig_extension:
         class: Symbio\OrangeGate\AdminBundle\Twig\OrangeGate4Extension
