@@ -15,22 +15,32 @@ use Symfony\Component\Translation\TranslatorInterface;
 
 class FormatterBlockService extends \Sonata\FormatterBundle\Block\FormatterBlockService
 {
+    protected $twig;
+
     /**
      * @param string $name
      * @param EngineInterface $templating
      * @param TranslatorInterface $translator
      */
-    public function __construct($name, EngineInterface $templating, TranslatorInterface $translator)
+    public function __construct($name, EngineInterface $templating, TranslatorInterface $translator, \Twig_Environment $twig)
     {
         $this->translator = $translator;
+        $this->twig = clone $twig;
+        $this->twig->setLoader(new \Twig_Loader_String());
         parent::__construct($name, $templating);
+
     }
 
     public function execute(BlockContextInterface $blockContext, Response $response = null)
     {
+        $content = $blockContext->getBlock()->getSetting('content');
+
+        $twig_content = $content ? $this->twig->render($content) : $content;
+
         return $this->renderResponse($blockContext->getTemplate(), array(
             'block'     => $blockContext->getBlock(),
-            'settings'  => $blockContext->getSettings()
+            'settings'  => $blockContext->getSettings(),
+            'content'   => $twig_content,
         ), $response);
     }
 
