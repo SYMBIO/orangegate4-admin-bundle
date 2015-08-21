@@ -21,7 +21,11 @@ class DoctrineExtensionListener implements ContainerAwareInterface
     public function onLateKernelRequest(GetResponseEvent $event)
     {
         $translatable = $this->container->get('gedmo.listener.translatable');
-        $translatable->setTranslatableLocale($event->getRequest()->getLocale());
+        $sites = $this->container->get('orangegate.site.pool')->getSites();
+        if (!$sites || count($sites) == 0) {
+            throw new \Exception('No site available');
+        }
+        $translatable->setTranslatableLocale($sites[0]->getLocale());
     }
 
     public function onKernelRequest(GetResponseEvent $event)
