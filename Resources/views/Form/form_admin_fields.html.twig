@@ -528,6 +528,7 @@
                 return;
             }
             CKEDITOR.plugins.addExternal("youtube", "/bundles/symbioorangegateadmin/plugins/youtube/", "plugin.js");
+            CKEDITOR.plugins.addExternal("image2", "/bundles/app/plugins/image2/", "plugin.js");
             var instance = {{ ckeditor_replace(form.vars.id, ckeditor_configuration) }}
             instance.on('change', function() {
                 $('#{{ form.vars.id }}').val(this.getSnapshot());
