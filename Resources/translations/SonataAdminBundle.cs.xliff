@@ -10,6 +10,10 @@
                 <source>No collection selected</source>
                 <target>Není vybrána žádná kolekce</target>
             </trans-unit>
+            <trans-unit id="td_role">
+                <source>td_role</source>
+                <target>Role</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

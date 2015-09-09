@@ -52,3 +52,9 @@ services:
         arguments: [@ivory_ck_editor.config_manager]
         tags:
             - { name: form.type, alias: orangegate_simple_formatter_type }
+
+    sonata.admin.object.manipulator.acl.admin:
+        class: Symbio\OrangeGate\AdminBundle\Util\AdminObjectAclManipulator
+        arguments: [@form.factory, Sonata\AdminBundle\Security\Acl\Permission\MaskBuilder]
+        calls:
+            - [ setContainer, [@service_container] ]
