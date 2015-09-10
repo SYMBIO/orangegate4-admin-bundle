@@ -533,7 +533,7 @@
             CKEDITOR.plugins.addExternal("image2", "/bundles/symbioorangegateadmin/plugins/image2/", "plugin.js");
             var instance = {{ ckeditor_replace(form.vars.id, ckeditor_configuration) }}
             instance.on('change', function() {
-                $('#{{ form.vars.id }}').val(this.getSnapshot());
+                $('#{{ form.vars.id }}').val(this.getData());
             });
         });
     </script>
