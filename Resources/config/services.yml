@@ -39,11 +39,16 @@ services:
         class: Symbio\OrangeGate\AdminBundle\Block\FormatterBlockService
         tags:
             - { name: sonata.block }
-        arguments: [ sonata.block.empty, @templating, @translator, @twig ]
+        arguments: [ sonata.block.empty, @templating, @translator ]
 
     orangegate.twig_extension:
         class: Symbio\OrangeGate\AdminBundle\Twig\OrangeGate4Extension
         public: false
+        tags:
+            - { name: twig.extension }
+
+    twig.extension.stringloader:
+        class: Twig_Extension_StringLoader
         tags:
             - { name: twig.extension }
 
