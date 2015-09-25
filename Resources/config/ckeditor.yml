@@ -1,0 +1,33 @@
+ivory_ck_editor:
+    plugins:
+        youtube:
+            path: "/bundles/symbioorangegateadmin/plugins/youtube/"
+            filename: "plugin.js"
+        lineutils:
+            path: "/bundles/symbioorangegateadmin/plugins/lineutils/"
+            filename: "plugin.js"
+        widget:
+            path: "/bundles/symbioorangegateadmin/plugins/widget/"
+            filename: "plugin.js"
+        image2:
+            path: "/bundles/symbioorangegateadmin/plugins/image2/"
+            filename: "plugin.js"
+        specialchar:
+            path: "/bundles/symbioorangegateadmin/plugins/specialchar/"
+            filename: "plugin.js"
+    default_config: default
+    configs:
+        default:
+            filebrowserBrowseRoute: admin_orangegate_media_media_browser
+            filebrowserImageBrowseRoute: admin_orangegate_media_media_browser
+            filebrowserImageBrowseRouteParameters:
+                provider: sonata.media.provider.image
+                hide_context: true
+            filebrowserUploadRoute: admin_orangegate_media_media_upload
+            filebrowserUploadRouteParameters:
+                provider: sonata.media.provider.file
+                hide_context: true
+            filebrowserImageUploadRoute: admin_orangegate_media_media_upload
+            filebrowserImageUploadRouteParameters:
+                provider: sonata.media.provider.image
+                hide_context: true

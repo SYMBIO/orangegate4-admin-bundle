@@ -527,10 +527,11 @@
             if (typeof CKEDITOR === 'undefined') {
                 return;
             }
-            CKEDITOR.plugins.addExternal("youtube", "/bundles/symbioorangegateadmin/plugins/youtube/", "plugin.js");
-            CKEDITOR.plugins.addExternal("lineutils", "/bundles/symbioorangegateadmin/plugins/lineutils/", "plugin.js");
-            CKEDITOR.plugins.addExternal("widget", "/bundles/symbioorangegateadmin/plugins/widget/", "plugin.js");
-            CKEDITOR.plugins.addExternal("image2", "/bundles/symbioorangegateadmin/plugins/image2/", "plugin.js");
+            CKEDITOR.plugins.addExternal("youtube", "/bundles/symbioorangegateadmin/plugins/youtube/");
+            CKEDITOR.plugins.addExternal("lineutils", "/bundles/symbioorangegateadmin/plugins/lineutils/");
+            CKEDITOR.plugins.addExternal("widget", "/bundles/symbioorangegateadmin/plugins/widget/");
+            CKEDITOR.plugins.addExternal("image2", "/bundles/symbioorangegateadmin/plugins/image2/");
+            CKEDITOR.plugins.addExternal("specialchar", "/bundles/symbioorangegateadmin/plugins/specialchar/");
             var instance = {{ ckeditor_replace(form.vars.id, ckeditor_configuration) }}
             instance.on('change', function() {
                 $('#{{ form.vars.id }}').val(this.getData());
