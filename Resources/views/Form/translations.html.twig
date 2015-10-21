@@ -20,7 +20,7 @@
         {% for translationsFields in form %}
             {% set locale = translationsFields.vars.name %}
 
-            <div class="orangegate_translationsFields-{{ locale }} tab-pane {% if form.vars.default_locale == locale %}active{% endif %}">
+            <div class="orangegate_translationsFields-{{ locale }} tab-pane {% if loop.index == 1 %}active{% endif %}">
                 {{ form_errors(translationsFields) }}
                 {{ form_widget(translationsFields) }}
             </div>
