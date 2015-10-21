@@ -7,7 +7,7 @@
         {% for translationsFields in form %}
             {% set locale = translationsFields.vars.name %}
 
-            <li {% if loop.index == 1 %}class="active"{% endif %}>
+            <li {% if loop.first %}class="active"{% endif %}>
                 <a href="#" data-toggle="tab" data-target=".orangegate_translationsFields-{{ locale }}">
                     <em class="flag flag-{{ locale}}">{{ locale|capitalize }}</em>
                     {% if translationsFields.vars.required %}*{% endif %}
@@ -20,7 +20,7 @@
         {% for translationsFields in form %}
             {% set locale = translationsFields.vars.name %}
 
-            <div class="orangegate_translationsFields-{{ locale }} tab-pane {% if loop.index == 1 %}active{% endif %}">
+            <div class="orangegate_translationsFields-{{ locale }} tab-pane {% if loop.first %}active{% endif %}">
                 {{ form_errors(translationsFields) }}
                 {{ form_widget(translationsFields) }}
             </div>
