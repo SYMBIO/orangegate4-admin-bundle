@@ -44,11 +44,7 @@ class FormatterBlockService extends \Sonata\FormatterBundle\Block\FormatterBlock
     public function buildEditForm(FormMapper $formMapper, BlockInterface $block)
     {
         if ($block instanceof Block && $block->getPage()) {
-            /**
-             * @var \Doctrine\ORM\PersistentCollection $translations
-             */
-            $translations = $block->getPage()->getTranslations();
-            $locales = $translations->getKeys();
+            $locales = $block->getPage()->getSite()->getLanguageVersions()->getKeys();
         } else {
             $locales = array();
         }
