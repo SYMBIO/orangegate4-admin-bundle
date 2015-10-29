@@ -259,3 +259,26 @@ td.sonata-ba-list-label {
 .btn.btn-outline.btn-warning:hover {
 	background-color: #e08e0b;
 }
+
+.field-short-description {
+	border: none;
+	background: none;
+	padding: 0;
+	padding-left: 40px;
+	min-width: 0;
+}
+
+.sonata-collection-delete {
+	box-shadow: none;
+	position: relative;
+	top: 40px;
+	z-index: 2;
+}
+
+.sonata-collection-add {
+	padding-top: 40px;
+}
+
+.sonata-collection-row {
+	height: 50px;
+}
