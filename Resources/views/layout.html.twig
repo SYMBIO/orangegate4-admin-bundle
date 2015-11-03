@@ -247,13 +247,6 @@
                     {% block sonata_page_content %}
                         <section class="content-header">
                             {% block sonata_page_content_header %}
-                                {% if _navbar_title is not empty %}
-                                    <h1>{{ _navbar_title|raw }}</h1>
-                                {% elseif admin is defined %}
-                                    <h1>{{ admin.trans(admin.label, {}, admin.translationdomain) }}</h1>
-                                {% else %}
-                                    <h1>Dashboard <small>Control panel</small></h1>
-                                {% endif %}
                                 {% block sonata_breadcrumb %}
                                     {% if _breadcrumb is not empty or action is defined %}
                                         {% if _breadcrumb is empty %}
@@ -279,6 +272,13 @@
                                         {% endif %}
                                     {% endif %}
                                 {% endblock sonata_breadcrumb %}
+                                {% if _navbar_title is not empty %}
+                                    <h1>{{ _navbar_title|raw }}</h1>
+                                {% elseif admin is defined %}
+                                    <h1>{{ admin.trans(admin.label, {}, admin.translationdomain) }}</h1>
+                                {% else %}
+                                    <h1>Dashboard <small>Control panel</small></h1>
+                                {% endif %}
                             {% endblock sonata_page_content_header %}
                         </section>
 

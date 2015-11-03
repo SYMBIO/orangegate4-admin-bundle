@@ -7,7 +7,7 @@
 }
 
 .content-wrapper > .content-header {
-	padding-bottom: 10px;
+	padding-bottom: 15px;
 }
 
 .content-wrapper > .content-actions {
@@ -16,6 +16,12 @@
 
 .content-wrapper > .content-actions > .action-bar {
     padding-bottom: 10px;
+}
+
+.sonata-bc .breadcrumb {
+	float: none;
+	position: static;
+	margin-bottom: 10px;
 }
 
 .box-content {
