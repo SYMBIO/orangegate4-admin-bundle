@@ -486,7 +486,7 @@
             update: function() { $('#{{ id }}').select2("onSortEnd"); }
         });
         $("#{{ id }}").parents('form:first').submit(function (event) {
-            var values   = $("#{{ id }}").val().split(',');
+            var values   = $("#{{ id }}").val().split(',').filter(function(a) { return a !== ""; });
             var baseName = $("#{{ id }}").attr('name');
             baseName = baseName.substring(0, baseName.length-1);
             for (var i=0; i<values.length; i++) {
