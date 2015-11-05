@@ -255,13 +255,14 @@
                 {% block sonata_page_content %}
                     <section class="content-header clearfix">
                         {% block sonata_page_content_header %}
-                            {% if _navbar_title is not empty %}
-                                <h1>{{ _navbar_title|raw }}</h1>
-                            {% elseif admin is defined %}
-                                <h1>{{ admin.trans(admin.label, {}, admin.translationdomain) }}</h1>
-                            {% else %}
-                                <h1>Dashboard <small>Control panel</small></h1>
+                            {% if _actions|trim|replace({'<div class="btn-group"></div>' : ''}) is not empty %}
+                                <div class="action-bar pull-right">
+                                    {% if _actions|trim is not empty %}
+                                        {{ _actions|raw }}
+                                    {% endif %}
+                                </div>
                             {% endif %}
+
                             {% block sonata_breadcrumb %}
                                 {% if _breadcrumb is not empty or action is defined %}
                                     {% if _breadcrumb is empty %}
@@ -287,20 +288,20 @@
                                     {% endif %}
                                 {% endif %}
                             {% endblock sonata_breadcrumb %}
+
+                            {% if _navbar_title is not empty %}
+                                <h1>{{ _navbar_title|raw }}</h1>
+                            {% elseif admin is defined %}
+                                <h1>{{ admin.trans(admin.label, {}, admin.translationdomain) }}</h1>
+                            {% else %}
+                                <h1>Dashboard <small>Control panel</small></h1>
+                            {% endif %}
                         {% endblock sonata_page_content_header %}
                     </section>
 
                     {% block sonata_page_content_nav %}
                         {% if _tab_menu|trim is not empty or _actions|trim|replace({'<div class="btn-group"></div>' : ''}) is not empty %}
                             <section class="content-actions clearfix">
-                                {% if _actions|trim|replace({'<div class="btn-group"></div>' : ''}) is not empty %}
-                                    <div class="action-bar pull-right">
-                                        {% if _actions|trim is not empty %}
-                                            {{ _actions|raw }}
-                                        {% endif %}
-                                    </div>
-                                {% endif %}
-
                                 {% if admin is defined and action is defined and action == 'list' and admin.listModes|length > 1 %}
                                     <br>
                                     <br>

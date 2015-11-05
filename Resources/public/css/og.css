@@ -10,6 +10,19 @@
 	padding-bottom: 15px;
 }
 
+@media (max-width: 767px) {
+	.content-header .action-bar .btn {
+		width: 37px;
+		color: transparent;
+	}
+	.content-header .action-bar .btn i {
+		color: #fff;
+	}
+	.content-header .action-bar .btn.btn-default i {
+		color: #444;
+	}
+}
+
 .content-wrapper > .content-actions {
     margin: 0 15px;
 }
@@ -55,6 +68,10 @@ td.sonata-ba-list-label {
 
 .image-gallery .image-item .field-actions {
 	margin: 0;
+}
+
+.image-item .field-short-description {
+	padding-left: 0;
 }
 
 .field-short-description {
