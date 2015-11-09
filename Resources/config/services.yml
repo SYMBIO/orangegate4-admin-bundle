@@ -63,3 +63,8 @@ services:
         arguments: [@form.factory, Sonata\AdminBundle\Security\Acl\Permission\MaskBuilder]
         calls:
             - [ setContainer, [@service_container] ]
+
+    orangegate.admin.form.type.dynamic_choice:
+        class: Symbio\OrangeGate\AdminBundle\Form\Type\DynamicChoiceType
+        tags:
+            - { name: form.type, alias: orangegate_type_dynamic_choice }

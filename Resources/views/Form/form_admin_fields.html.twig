@@ -539,3 +539,31 @@
         });
     </script>
 {% endblock orangegate_simple_formatter_type_widget %}
+
+{% block orangegate_type_dynamic_choice_widget -%}
+    {% if required and empty_value is none and not empty_value_in_choices and not multiple -%}
+        {% set required = false %}
+    {%- endif -%}
+    <select {{ block('widget_attributes') }}{% if multiple %} multiple="multiple"{% endif %}>
+        {% if empty_value is not none -%}
+            <option value=""{% if required and value is empty %} selected="selected"{% endif %}>{{ empty_value|trans({}, translation_domain) }}</option>
+        {%- endif %}
+        {% set options = choices -%}
+        {{- block('choice_widget_options') -}}
+    </select>
+    <script>
+        var {{ name }}CompleteChoices = {{ complete_choices|json_encode()|raw }};
+        $('#{{ form.parent[source_field].vars.id }}').on('change', function() {
+            var newData = {{ name }}CompleteChoices[$(this).val()] || [],
+                    select = document.getElementById('{{ form.vars.id }}');
+
+            $(select).select2('destroy');
+            select.options.length = 0;
+            for (var i = 0; i < newData.length; i++) {
+                select.options[i] = new Option(newData[i].text, newData[i].id);
+            }
+            $(select).select2({width:'100%'});
+            $(select).trigger('change');
+        });
+    </script>
+{%- endblock orangegate_type_dynamic_choice_widget %}
