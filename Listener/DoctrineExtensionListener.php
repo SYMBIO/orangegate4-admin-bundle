@@ -26,4 +26,13 @@ class DoctrineExtensionListener implements ContainerAwareInterface
             $loggable->setUsername($securityContext->getToken()->getUsername());
         }
     }
+
+    /**
+     * Left here for backward compatibility
+     *
+     * @param GetResponseEvent $event
+     */
+    public function onLateKernelRequest(GetResponseEvent $event)
+    {
+    }
 }
