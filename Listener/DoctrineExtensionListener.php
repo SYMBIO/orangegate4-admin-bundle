@@ -18,16 +18,6 @@ class DoctrineExtensionListener implements ContainerAwareInterface
         $this->container = $container;
     }
 
-    public function onLateKernelRequest(GetResponseEvent $event)
-    {
-        $translatable = $this->container->get('gedmo.listener.translatable');
-        $sites = $this->container->get('orangegate.site.pool')->getSites();
-        if (!$sites || count($sites) == 0) {
-            throw new \Exception('No site available');
-        }
-        $translatable->setTranslatableLocale($sites[0]->getLocale());
-    }
-
     public function onKernelRequest(GetResponseEvent $event)
     {
         $securityContext = $this->container->get('security.context', ContainerInterface::NULL_ON_INVALID_REFERENCE);
@@ -35,5 +25,14 @@ class DoctrineExtensionListener implements ContainerAwareInterface
             $loggable = $this->container->get('gedmo.listener.loggable');
             $loggable->setUsername($securityContext->getToken()->getUsername());
         }
+    }
+
+    /**
+     * Left here for backward compatibility
+     *
+     * @param GetResponseEvent $event
+     */
+    public function onLateKernelRequest(GetResponseEvent $event)
+    {
     }
 }
