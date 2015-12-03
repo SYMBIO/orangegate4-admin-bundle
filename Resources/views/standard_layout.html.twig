@@ -46,6 +46,8 @@
                 {% endfor %}
             {% endif %}
 
+            <script>$.ajaxSetup({cache:false})</script>
+
             {% set locale = app.request.locale %}
             {# localize moment #}
             {% if locale[:2] != 'en' %}

@@ -48,6 +48,7 @@
             {% for javascript in admin_pool.getOption('javascripts', []) %}
                 <script src="{{ asset(javascript) }}"></script>
             {% endfor %}
+            <script>$.ajaxSetup({cache:false})</script>
 
             {# localize select2 #}
             {% if admin_pool is defined and admin_pool.getOption('use_select2') %}
