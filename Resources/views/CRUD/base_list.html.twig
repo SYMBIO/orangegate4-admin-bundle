@@ -2,7 +2,9 @@
 
 {% block actions %}
 {% spaceless %}
-    {% include 'SymbioOrangeGateAdminBundle:Button:create_button.html.twig' %}
+    {% if admin.code != 'sonata.page.admin.snapshot' %}
+        {% include 'SymbioOrangeGateAdminBundle:Button:create_button.html.twig' %}
+    {% endif %}
 {% endspaceless %}
 {% endblock %}
 
