@@ -14,10 +14,13 @@
 
 {% block actions %}
     <div class="btn-group">{% spaceless %}
-        {% include 'SymbioOrangeGateAdminBundle:Button:show_button.html.twig' %}
-        {% include 'SymbioOrangeGateAdminBundle:Button:history_button.html.twig' %}
-        {% include 'SymbioOrangeGateAdminBundle:Button:acl_button.html.twig' %}
-    {% endspaceless %}</div>
+            {% include 'SymbioOrangeGateAdminBundle:Button:show_button.html.twig' %}
+            {% include 'SymbioOrangeGateAdminBundle:Button:history_button.html.twig' %}
+            {% if admin.code == 'sonata.page.admin.page' and admin.child('sonata.page.admin.snapshot').isGranted('CREATE')%}
+                {% include 'SymbioOrangeGateAdminBundle:Button:publish_button.html.twig' %}
+            {% endif %}
+            {% include 'SymbioOrangeGateAdminBundle:Button:acl_button.html.twig' %}
+        {% endspaceless %}</div>
     {#% include 'SymbioOrangeGateAdminBundle:Button:list_button.html.twig' %#}
 {% endblock %}
 
