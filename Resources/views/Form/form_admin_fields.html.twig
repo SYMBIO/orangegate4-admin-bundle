@@ -416,7 +416,7 @@
         <div class="pull-left">
             {% if value is not empty and value.providerReference %}
                 <div class="pull-left" style="margin-right: 25px">
-                    {% thumbnail value, 'admin' with {'class': 'img-polaroid media-object'} %}<br>
+                    {% og_thumbnail value, 'admin' with {'class': 'img-polaroid media-object'} %}<br>
                     {% if sonata_admin_enabled is defined and sonata_admin_enabled %}
                         <a href="{{ url('admin_orangegate_media_media_edit', {id: value.id}) }}"><strong>{{ value.name }}</strong></a>
                     {% else %}
