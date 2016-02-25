@@ -68,3 +68,10 @@ services:
         class: Symbio\OrangeGate\AdminBundle\Form\Type\DynamicChoiceType
         tags:
             - { name: form.type, alias: orangegate_type_dynamic_choice }
+
+    orangegate.core.form.type.filesystem_choice:
+        class: Symbio\OrangeGate\AdminBundle\Form\Type\FilesystemChoiceType
+        tags:
+            - { name: form.type, alias: orangegate_filesystem_choice_type }
+        arguments: [ @kernel ]
+
