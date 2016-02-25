@@ -79,7 +79,7 @@ class FilesystemChoiceType extends AbstractType
 
         $data = [];
         foreach ($files as $file) {
-            $data[] = new ChoiceView($file->getFilename(), $file->getFilename(), $file->getFilename());
+            $data[$file->getFilename()] = new ChoiceView($file->getFilename(), $file->getFilename(), $file->getFilename());
         }
 
         return $data;
