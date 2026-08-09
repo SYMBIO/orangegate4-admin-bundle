@@ -1,0 +1,35 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    Symbio\OrangeGate\AdminBundle\Controller\AuditController:
+        tags: ['controller.service_arguments']
+
+    Symbio\OrangeGate\AdminBundle\Form\Type\StringType:
+        tags:
+            - { name: form.type }
+
+    Symbio\OrangeGate\AdminBundle\Form\Type\AutocompleteType:
+        tags:
+            - { name: form.type }
+
+    Symbio\OrangeGate\AdminBundle\Form\Type\SortableEntityType:
+        tags:
+            - { name: form.type }
+
+    Symbio\OrangeGate\AdminBundle\Form\Type\DynamicChoiceType:
+        tags:
+            - { name: form.type }
+
+    Symbio\OrangeGate\AdminBundle\Form\Type\SimpleFormatterType:
+        tags:
+            - { name: form.type }
+
+    Symbio\OrangeGate\AdminBundle\Twig\OrangeGate4Extension:
+        tags:
+            - { name: twig.extension }
+
+    Symbio\OrangeGate\AdminBundle\Block\FormatterBlockService:
+        tags:
+            - { name: sonata.block }

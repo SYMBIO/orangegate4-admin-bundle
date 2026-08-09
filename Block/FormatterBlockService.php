@@ -1,88 +1,56 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Symbio\OrangeGate\AdminBundle\Block;
 
 use Sonata\BlockBundle\Block\BlockContextInterface;
-use Symbio\OrangeGate\PageBundle\Entity\Block;
-use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
-use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\BlockBundle\Block\Service\AbstractBlockService;
+use Sonata\BlockBundle\Form\Mapper\FormMapper;
 use Sonata\BlockBundle\Model\BlockInterface;
-use Sonata\BlockBundle\Block\BaseBlockService;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Symfony\Component\Translation\TranslatorInterface;
+use Sonata\Form\Validator\ErrorElement;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Twig\Environment;
 
-class FormatterBlockService extends \Sonata\FormatterBundle\Block\FormatterBlockService
+/**
+ * Minimal Sonata Block 5 port of the legacy OrangeGate formatter block.
+ */
+final class FormatterBlockService extends AbstractBlockService
 {
-    /**
-     * @param string $name
-     * @param EngineInterface $templating
-     * @param TranslatorInterface $translator
-     */
-    public function __construct($name, EngineInterface $templating, TranslatorInterface $translator)
+    public function __construct(Environment $twig)
     {
-        $this->translator = $translator;
-        parent::__construct($name, $templating);
-
+        parent::__construct($twig);
     }
 
-    public function execute(BlockContextInterface $blockContext, Response $response = null)
+    public function execute(BlockContextInterface $blockContext, ?Response $response = null): Response
     {
-        $content = $blockContext->getBlock()->getSetting('content');
-
-        return $this->renderResponse($blockContext->getTemplate(), array(
-            'block'     => $blockContext->getBlock(),
-            'settings'  => $blockContext->getSettings(),
-            'content'   => $content,
-        ), null);
+        return $this->renderResponse($blockContext->getTemplate(), [
+            'block' => $blockContext->getBlock(),
+            'settings' => $blockContext->getSettings(),
+            'content' => $blockContext->getBlock()->getSetting('content'),
+        ], $response);
     }
 
-    /**
-    * {@inheritdoc}
-    */
-    public function buildEditForm(FormMapper $formMapper, BlockInterface $block)
+    public function configureSettings(OptionsResolver $resolver): void
     {
-        $formMapper->add('translations', 'orangegate_translations', array(
-            'label' => false,
-            'locales' => $block->getSite()->getLocales(),
-            'fields' => array(
-                'enabled' => array(
-                    'field_type' => 'checkbox',
-                    'required' => false,
-                ),
-				'settings' => array(
-					'field_type' => 'sonata_type_immutable_array',
-                    'label' => false,
-					'keys' => array(
-                        array('content', 'orangegate_simple_formatter_type', array(
-                                'ckeditor_context' => 'formatter',
-                            )
-                        ),
-                    )
-                )
-            )
-        ));
+        $resolver->setDefaults([
+            'content' => '',
+            'format' => 'richhtml',
+            'template' => '@SonataFormatter/Block/block_formatter.html.twig',
+        ]);
     }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getName()
-	{
-		return 'Rich Html Text Area';
-	}
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setDefaultSettings(OptionsResolverInterface $resolver)
+    public function validateBlock(ErrorElement $errorElement, BlockInterface $block): void
     {
-        $resolver->setDefaults(array(
-            'format'     => 'richhtml',
-            'rawContent' => '<b>Insert your custom content here</b>',
-            'content'    => '<b>Insert your custom content here</b>',
-            'template'   => 'SymbioOrangeGateAdminBundle:Block:block_formatter.html.twig'
-        ));
+    }
+
+    public function configureEditForm(FormMapper $form, BlockInterface $block): void
+    {
+    }
+
+    public function configureCreateForm(FormMapper $form, BlockInterface $block): void
+    {
+        $this->configureEditForm($form, $block);
     }
 }

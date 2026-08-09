@@ -13,18 +13,23 @@
         }
     ],
     "require": {
-        "sonata-project/admin-bundle": "~2.4@dev"
-    },
-    "require-dev": {
-    },
-    "suggest": {
+        "php": "^8.5",
+        "doctrine/common": "^3.4",
+        "sonata-project/admin-bundle": "^4.43",
+        "sonata-project/doctrine-orm-admin-bundle": "^4.21",
+        "sonata-project/form-extensions": "^2.0",
+        "symfony/framework-bundle": "7.4.*",
+        "twig/twig": "^3.0"
     },
     "autoload": {
-        "psr-4": { "Symbio\\OrangeGate\\AdminBundle\\": "" }
+        "psr-4": {
+            "Symbio\\OrangeGate\\AdminBundle\\": ""
+        }
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "1.0.x-dev"
+            "dev-master": "4.1.x-dev"
         }
-    }
+    },
+    "minimum-stability": "stable"
 }

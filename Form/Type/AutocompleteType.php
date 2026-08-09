@@ -1,34 +1,39 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Symbio\OrangeGate\AdminBundle\Form\Type;
 
-use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormView;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\Form\FormView;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 
-class AutocompleteType extends AbstractType
+final class AutocompleteType extends AbstractType
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function buildView(FormView $view, FormInterface $form, array $options)
+    public function buildView(FormView $view, FormInterface $form, array $options): void
     {
         $property = $form->getName();
-        $admin = $options['sonata_field_description']->getAdmin();
+        $fieldDescription = $options['sonata_field_description'] ?? null;
+        if (null === $fieldDescription) {
+            $view->vars['choices'] = [];
+
+            return;
+        }
+
+        $admin = $fieldDescription->getAdmin();
         $modelManager = $admin->getModelManager();
         $class = $admin->getClass();
 
         $entities = $modelManager
-                        ->getEntityManager($class)
-                        ->getRepository($class)
-                        ->findBy(array(), array($property => 'ASC'));
+            ->getEntityManager($class)
+            ->getRepository($class)
+            ->findBy([], [$property => 'ASC']);
 
         $accessor = PropertyAccess::createPropertyAccessor();
-
-        $choices = array();
+        $choices = [];
         foreach ($entities as $entity) {
             $value = $accessor->getValue($entity, $property);
             $choices[$value] = $value;
@@ -37,28 +42,20 @@ class AutocompleteType extends AbstractType
         $view->vars['choices'] = $choices;
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefaults(array(
-            'compound'          => false,
-        ));
+        $resolver->setDefaults([
+            'compound' => false,
+            'sonata_field_description' => null,
+        ]);
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public function getParent()
+    public function getParent(): string
     {
-        return 'text';
+        return TextType::class;
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public function getName()
+    public function getBlockPrefix(): string
     {
         return 'orangegate_type_autocomplete';
     }
