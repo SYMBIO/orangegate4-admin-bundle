@@ -1,0 +1,8 @@
+{% extends '@!SonataAdmin/CRUD/base_edit.html.twig' %}
+
+{# Production edit chrome: Zobrazit / Revize / Oprávnění (no create / back-to-list). #}
+{%- block actions -%}
+    {% include '@SonataAdmin/Button/show_button.html.twig' %}
+    {% include '@SonataAdmin/Button/history_button.html.twig' %}
+    {% include '@SonataAdmin/Button/acl_button.html.twig' %}
+{%- endblock -%}

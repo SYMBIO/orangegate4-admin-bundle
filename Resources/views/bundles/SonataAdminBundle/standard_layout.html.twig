@@ -37,14 +37,38 @@
             </div>
 
             <ol class="breadcrumb">
-                <li>
-                    <a href="{{ path('sonata_admin_dashboard') }}">{{ 'dashboard'|trans({}, 'SymbioOrangeGateAdminBundle') }}</a>
-                </li>
-                <li class="active">
-                    <span>{{ admin.label }}</span>
-                </li>
+                {% if action is defined %}
+                    {% for menu in admin.breadcrumbs(action) %}
+                        {% if not loop.last %}
+                            <li>
+                                {% if menu.uri is not empty %}
+                                    <a href="{{ menu.uri }}">{{ menu.label|raw }}</a>
+                                {% else %}
+                                    <span>{{ menu.label|raw }}</span>
+                                {% endif %}
+                            </li>
+                        {% else %}
+                            <li class="active"><span>{{ menu.label|raw }}</span></li>
+                        {% endif %}
+                    {% endfor %}
+                {% else %}
+                    <li>
+                        <a href="{{ path('sonata_admin_dashboard') }}">{{ 'dashboard'|trans({}, 'SymbioOrangeGateAdminBundle') }}</a>
+                    </li>
+                    <li class="active">
+                        <span>{{ admin.trans(admin.label, {}, admin.translationDomain) }}</span>
+                    </li>
+                {% endif %}
             </ol>
-            <h1>{{ admin.label }}</h1>
+
+            {# Production edit title: Upravit "Airbus 2" (from navbar_title), not bare admin label. #}
+            <h1>
+                {% if _navbar_title|default('')|trim is not empty %}
+                    {{ _navbar_title|raw }}
+                {% else %}
+                    {{ admin.trans(admin.label, {}, admin.translationDomain) }}
+                {% endif %}
+            </h1>
         {% else %}
             <h1>Dashboard <small>Control panel</small></h1>
         {% endif %}
