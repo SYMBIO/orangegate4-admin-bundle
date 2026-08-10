@@ -1,5 +1,13 @@
 {% extends '@!SonataAdmin/standard_layout.html.twig' %}
 
+{% block sonata_page_content_header %}
+    {% if admin is not defined %}
+        <h1>Dashboard <small>Control panel</small></h1>
+    {% endif %}
+
+    {{ parent() }}
+{% endblock %}
+
 {% block side_bar_after_nav_content %}
     <a href="http://www.symbiodigital.com" rel="noreferrer" target="_blank">Created by SYMBIO</a>
 {% endblock %}

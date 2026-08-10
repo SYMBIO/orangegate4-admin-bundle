@@ -30,6 +30,8 @@ services:
         tags:
             - { name: twig.extension }
 
+    Symbio\OrangeGate\AdminBundle\Menu\DashboardMenuListener: ~
+
     Symbio\OrangeGate\AdminBundle\Block\FormatterBlockService:
         tags:
             - { name: sonata.block }
