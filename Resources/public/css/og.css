@@ -35,6 +35,23 @@
 	float: none;
 	position: static;
 	margin-bottom: 10px;
+	background: transparent;
+	padding: 0;
+}
+
+.sonata-bc .content-header .breadcrumb > li,
+.sonata-bc .content-header .breadcrumb > li > a,
+.sonata-bc .content-header .breadcrumb > li > span {
+	color: #444;
+}
+
+.sonata-bc .content-header .breadcrumb > li + li:before {
+	color: #999;
+}
+
+.sonata-bc .content-header h1 {
+	margin: 0 0 10px;
+	font-size: 24px;
 }
 
 .box-content {

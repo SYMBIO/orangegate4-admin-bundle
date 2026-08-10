@@ -14,18 +14,18 @@ final class DashboardMenuListener
     {
         $menu = $event->getMenu();
 
-        $menu->addChild(
-            $event->getFactory()->createItem('dashboard', [
-                'route' => 'sonata_admin_dashboard',
-                'label' => 'dashboard',
-                'extras' => [
-                    'icon' => 'fa fa-dashboard',
-                    'on_top' => true,
-                    'translation_domain' => 'SymbioOrangeGateAdminBundle',
-                    'sonata_admin' => true,
-                ],
-            ]),
-            ['first' => true]
-        );
+        $dashboard = $event->getFactory()->createItem('dashboard', [
+            'route' => 'sonata_admin_dashboard',
+            'label' => 'dashboard',
+            'extras' => [
+                'icon' => 'fa fa-dashboard',
+                'on_top' => true,
+                'translation_domain' => 'SymbioOrangeGateAdminBundle',
+                'sonata_admin' => true,
+            ],
+        ]);
+
+        $children = $menu->getChildren();
+        $menu->setChildren(['dashboard' => $dashboard] + $children);
     }
 }

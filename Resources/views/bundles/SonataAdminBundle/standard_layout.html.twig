@@ -1,7 +1,20 @@
 {% extends '@!SonataAdmin/standard_layout.html.twig' %}
 
+{# Hide Sonata navbar breadcrumbs (low contrast on blue skin). #}
+{% block sonata_breadcrumb %}{% endblock %}
+
 {% block sonata_page_content_header %}
-    {% if admin is not defined %}
+    {% if admin is defined %}
+        <ol class="breadcrumb">
+            <li>
+                <a href="{{ path('sonata_admin_dashboard') }}">{{ 'dashboard'|trans({}, 'SymbioOrangeGateAdminBundle') }}</a>
+            </li>
+            <li class="active">
+                <span>{{ admin.label }}</span>
+            </li>
+        </ol>
+        <h1>{{ admin.label }}</h1>
+    {% else %}
         <h1>Dashboard <small>Control panel</small></h1>
     {% endif %}
 
