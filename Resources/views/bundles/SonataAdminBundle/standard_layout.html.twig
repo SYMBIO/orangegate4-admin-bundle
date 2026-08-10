@@ -38,19 +38,7 @@
 
             <ol class="breadcrumb">
                 {% if action is defined %}
-                    {% for menu in admin.breadcrumbs(action) %}
-                        {% if not loop.last %}
-                            <li>
-                                {% if menu.uri is not empty %}
-                                    <a href="{{ menu.uri }}">{{ menu.label|raw }}</a>
-                                {% else %}
-                                    <span>{{ menu.label|raw }}</span>
-                                {% endif %}
-                            </li>
-                        {% else %}
-                            <li class="active"><span>{{ menu.label|raw }}</span></li>
-                        {% endif %}
-                    {% endfor %}
+                    {{ render_breadcrumbs(admin, action) }}
                 {% else %}
                     <li>
                         <a href="{{ path('sonata_admin_dashboard') }}">{{ 'dashboard'|trans({}, 'SymbioOrangeGateAdminBundle') }}</a>
