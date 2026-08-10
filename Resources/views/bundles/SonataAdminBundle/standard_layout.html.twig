@@ -1,24 +1,98 @@
 {% extends '@!SonataAdmin/standard_layout.html.twig' %}
 
-{# Hide Sonata navbar breadcrumbs (low contrast on blue skin). #}
+{# Production puts breadcrumbs in content header, not the blue navbar. #}
 {% block sonata_breadcrumb %}{% endblock %}
 
-{% block sonata_page_content_header %}
-    {% if admin is defined %}
-        <ol class="breadcrumb">
-            <li>
-                <a href="{{ path('sonata_admin_dashboard') }}">{{ 'dashboard'|trans({}, 'SymbioOrangeGateAdminBundle') }}</a>
+{# Production shows username next to the user icon. #}
+{% block sonata_top_nav_menu_user_block %}
+    {% if app.user %}
+        {% set userBlock = include(get_global_template('user_block')) %}
+        {% if userBlock|trim is not empty %}
+            <li class="dropdown user-menu">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="fas fa-user fa-fw" aria-hidden="true"></i>
+                    <span class="hidden-xs">{{ app.user.userIdentifier|default(app.user) }}</span>
+                    <i class="fas fa-caret-down" aria-hidden="true"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-user">
+                    {{ userBlock|raw }}
+                </ul>
             </li>
-            <li class="active">
-                <span>{{ admin.label }}</span>
-            </li>
-        </ol>
-        <h1>{{ admin.label }}</h1>
-    {% else %}
-        <h1>Dashboard <small>Control panel</small></h1>
+        {% endif %}
     {% endif %}
+{% endblock %}
 
-    {{ parent() }}
+{% block sonata_page_content_header %}
+    <div class="og-page-heading clearfix">
+        {% if admin is defined %}
+            <div class="action-bar pull-right">
+                {% if action|default('') == 'list' and admin.hasAccess('create') and admin.hasRoute('create') %}
+                    <a class="btn btn-success" href="{{ admin.generateUrl('create') }}">
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                        {{ 'link_action_create'|trans({}, 'SonataAdminBundle') }}
+                    </a>
+                {% elseif action|default('') != 'list' and _actions|default('')|trim|replace({'<li>': '', '</li>': ''}) is not empty %}
+                    <ul class="og-action-list">{{ _actions|raw }}</ul>
+                {% endif %}
+            </div>
+
+            <ol class="breadcrumb">
+                <li>
+                    <a href="{{ path('sonata_admin_dashboard') }}">{{ 'dashboard'|trans({}, 'SymbioOrangeGateAdminBundle') }}</a>
+                </li>
+                <li class="active">
+                    <span>{{ admin.label }}</span>
+                </li>
+            </ol>
+            <h1>{{ admin.label }}</h1>
+        {% else %}
+            <h1>Dashboard <small>Control panel</small></h1>
+        {% endif %}
+    </div>
+
+    {# Keep Sonata 5 filter/list-mode toolbar on list pages (placement may differ from production). #}
+    {% if action|default('') == 'list' and (
+        _list_filters_actions is not empty
+        or _tab_menu is not empty
+        or (admin is defined and admin.listModes|length > 1)
+    ) %}
+        <nav class="navbar navbar-default og-list-toolbar" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-collapse">
+                    {% if _tab_menu is not empty %}
+                        <div class="navbar-left">
+                            {{ _tab_menu|raw }}
+                        </div>
+                    {% endif %}
+
+                    {% if admin is defined and admin.listModes|length > 1 %}
+                        <div class="nav navbar-right btn-group">
+                            {% for mode, settings in admin.listModes %}
+                                <a href="{{ admin.generateUrl('list', app.request.query.all|merge({_list_mode: mode})) }}"
+                                   class="btn btn-default navbar-btn btn-sm{% if admin.getListMode() == mode %} active{% endif %}">
+                                    {{ settings.icon|default('')|parse_icon }}
+                                </a>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+
+                    {% if _list_filters_actions is not empty %}
+                        {{ _list_filters_actions|raw }}
+                    {% endif %}
+                </div>
+            </div>
+        </nav>
+    {% elseif _tab_menu is not empty %}
+        <nav class="navbar navbar-default og-list-toolbar" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-collapse">
+                    <div class="navbar-left">
+                        {{ _tab_menu|raw }}
+                    </div>
+                </div>
+            </div>
+        </nav>
+    {% endif %}
 {% endblock %}
 
 {% block side_bar_after_nav_content %}
